@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "git: status check",
+            "type": "shell",
+            "command": "git status",
+            "group": "none",
+            "presentation": {
+                "panel": "shared",
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "log: create today directory",
+            "type": "shell",
+            "command": "mkdir -p log/2026/10-02 && touch log/2026/10-02/daily-report.md",
+            "group": "none",
+            "presentation": {
+                "panel": "shared",
+                "reveal": "always"
+            }
+        }
+    ]
+}

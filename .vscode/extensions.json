@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-python.python",
+        "ms-azuretools.vscode-docker",
+        "eamodio.gitlens",
+        "bradlc.vscode-tailwindcss",
+        "Mechatroner.rainbow-csv",
+        "formulahendry.code-runner",
+        "redhat.vscode-yaml"
+    ]
+}
