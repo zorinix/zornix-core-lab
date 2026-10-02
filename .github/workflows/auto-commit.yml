@@ -1,0 +1,30 @@
+name: Auto Keep-Alive Commit
+
+on:
+  schedule:
+    # 1日に5回実行する設定（UTCベース）
+    # 例: 3:00, 7:00, 11:00, 15:00, 19:00 UTC （日本時間だとお昼〜深夜にかけて約4時間おき）
+    - cron: '0 3,7,11,15,19 * * *'
+  workflow_dispatch:
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Git identity
+        run: |
+          git config --global user.name "zornix-lab-bot"
+          git config --global user.email "bot@zornix.local"
+
+      - name: Update activity log
+        run: |
+          echo "Lab activity update: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> lab-activity.log
+          git add lab-activity.log
+          git commit -m "chore: lab activity keep-alive update [skip ci]" || exit 0
+          git push
