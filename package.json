@@ -1,0 +1,18 @@
+{
+    "name": "@zornix-proverili/zornix-core-lab",
+    "version": "1.0.0",
+    "description": "Zornix core lab learning and automation repository",
+    "main": "index.js",
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/zornix-proverili/zornix-core-lab.git"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 0"
+    },
+    "author": "zornix",
+    "license": "MIT"
+}
