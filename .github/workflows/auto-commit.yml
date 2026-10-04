@@ -18,7 +18,7 @@ jobs:
       - name: Set up Git identity
         run: |
           git config --global user.name "zornix-proverili"
-          git config --global user.email "zornix.proverili@gmail.com"
+          git config --global user.email "298641293+zornix-proverili@users.noreply.github.com"
 
       - name: Update activity log
         run: |
