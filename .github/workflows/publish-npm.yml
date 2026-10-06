@@ -8,8 +8,7 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-    
-    # GitHub Packages への書き込み権限を明示
+
     permissions:
       contents: read
       packages: write
@@ -24,7 +23,7 @@ jobs:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
 
-      - name: Install dependencies and Build (if needed)
+      - name: Install dependencies
         run: |
           if [ -f package-lock.json ]; then
             npm ci
@@ -33,6 +32,18 @@ jobs:
           elif [ -f package.json ]; then
             npm install
           fi
+
+      - name: Prevent duplicate publish
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "Publishing version: $VERSION"
+          if npm view @zornix-proverili/zornix-core-lab@$VERSION >/dev/null 2>&1; then
+            echo "Version $VERSION already exists in GitHub Packages."
+            echo "Bump the package version before publishing."
+            exit 1
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish package
         run: |
