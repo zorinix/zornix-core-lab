@@ -1,6 +1,6 @@
 {
     "name": "@zornix-proverili/zornix-core-lab",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Zornix core lab learning and automation repository",
     "main": "index.js",
     "publishConfig": {
