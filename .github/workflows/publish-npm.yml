@@ -8,9 +8,12 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    
+    # 権限の明示（必須）
     permissions:
       contents: read
       packages: write
+      id-token: write
 
     steps:
       - name: Checkout repository
@@ -21,6 +24,16 @@ jobs:
         with:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
+
+      - name: Install dependencies and Build (if needed)
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          elif [ -f yarn.lock ]; then
+            yarn install
+          elif [ -f package.json ]; then
+            npm install
+          fi
 
       - name: Publish package
         run: |
